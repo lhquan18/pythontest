@@ -117,19 +117,19 @@ class ObjectManagerApp(QWidget):
         self.add_button = QPushButton("Add")
         self.edit_button = QPushButton("Edit")
         self.delete_button = QPushButton("Delete")
-        self.logout_button = QPushButton("Logout")  # New button for logout
+        self.logout_button = QPushButton("Logout")  
 
         self.add_button.clicked.connect(self.show_add_dialog)
         self.edit_button.clicked.connect(self.show_edit_dialog)
         self.delete_button.clicked.connect(self.delete_object)
-        self.logout_button.clicked.connect(self.logout)  # Connect to the logout method
+        self.logout_button.clicked.connect(self.logout)  
 
         self.main_layout.addWidget(QLabel("Object List:"))
         self.main_layout.addWidget(self.object_list_widget)
         self.main_layout.addWidget(self.add_button)
         self.main_layout.addWidget(self.edit_button)
         self.main_layout.addWidget(self.delete_button)
-        self.main_layout.addWidget(self.logout_button)  # Add the logout button
+        self.main_layout.addWidget(self.logout_button)  
 
         self.setLayout(self.main_layout)
 
@@ -163,8 +163,7 @@ class ObjectManagerApp(QWidget):
                 self.update_object_list()
 
     def logout(self):
-        self.close()  # Close the ObjectManagerApp window, returning to the LoginForm window
-
+        self.close()  
     def update_object_list(self):
         self.object_list_widget.clear()
         for obj in self.object_manager.objects:
@@ -207,13 +206,10 @@ class ObjectDialog(QDialog):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
 
-    # Auth Manager Setup
     auth_manager = AuthManager()
 
-    # Object Manager Setup
     object_manager = ObjectManager()
 
-    # Main Application
     login_form = LoginForm(auth_manager)
     if login_form.exec_() == QDialog.Accepted:
         main_app = ObjectManagerApp(auth_manager, object_manager)
